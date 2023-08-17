@@ -82,7 +82,7 @@ void check_params() {
 }
 
 void ocr(std::vector<cv::String> &cv_all_img_names) {
-  PPOCR ocr;
+    PPOCR ocr;
 
   if (FLAGS_benchmark) {
     ocr.reset_timer();

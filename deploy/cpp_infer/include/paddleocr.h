@@ -13,16 +13,19 @@
 // limitations under the License.
 
 #pragma once
-
+#define PADDLEOCR_API __declspec(dllexport)
 #include <include/ocr_cls.h>
 #include <include/ocr_det.h>
 #include <include/ocr_rec.h>
 
 namespace PaddleOCR {
 
-class PPOCR {
+class PADDLEOCR_API PPOCR {
 public:
-  explicit PPOCR();
+  //explicit PPOCR();
+  explicit PPOCR(const bool det = true, const std::string& det_model_dir = "./inference/det_infer", const float det_db_thresh = 0.3, const float det_db_box_thresh = 0.6, const float det_db_unclip_ratio = 1.8, const std::string& det_db_score_mode = "fast", const std::string& precision = "fp16",
+      const bool cls = true, const bool use_angle_cls = true, const std::string& cls_model_dir = "./inference/cls_infer", const int cls_batch_num = 1,
+      const bool rec = true, const std::string& rec_model_dir = "./inference/rec_infer", const int rec_batch_num = 6);
   ~PPOCR() = default;
 
   std::vector<std::vector<OCRPredictResult>> ocr(std::vector<cv::Mat> img_list,
