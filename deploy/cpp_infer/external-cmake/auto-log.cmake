@@ -6,8 +6,8 @@ set(FETCHCONTENT_BASE_DIR "${CMAKE_CURRENT_BINARY_DIR}/third-party")
 FetchContent_Declare(
   extern_Autolog
   PREFIX autolog
-  # If you don't have access to github, replace it with https://gitee.com/Double_V/AutoLog
-  GIT_REPOSITORY https://github.com/LDOUBLEV/AutoLog.git
+  # If you don't have access to github https://github.com/LDOUBLEV/AutoLog.git, replace it with https://gitee.com/Double_V/AutoLog
+  GIT_REPOSITORY https://gitee.com/Double_V/AutoLog
   GIT_TAG        main
 )
 FetchContent_MakeAvailable(extern_Autolog)
