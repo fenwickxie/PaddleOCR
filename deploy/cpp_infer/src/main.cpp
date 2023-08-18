@@ -174,29 +174,29 @@ void structure(std::vector<cv::String> &cv_all_img_names) {
   }
 }
 
-int main(int argc, char **argv) {
-  // Parsing command-line
-  google::ParseCommandLineFlags(&argc, &argv, true);
-  check_params();
-
-  if (!Utility::PathExists(FLAGS_image_dir)) {
-    std::cerr << "[ERROR] image path not exist! image_dir: " << FLAGS_image_dir
-              << std::endl;
-    exit(1);
-  }
-
-  std::vector<cv::String> cv_all_img_names;
-  cv::glob(FLAGS_image_dir, cv_all_img_names);
-  std::cout << "total images num: " << cv_all_img_names.size() << std::endl;
-
-  if (!Utility::PathExists(FLAGS_output)) {
-    Utility::CreateDir(FLAGS_output);
-  }
-  if (FLAGS_type == "ocr") {
-    ocr(cv_all_img_names);
-  } else if (FLAGS_type == "structure") {
-    structure(cv_all_img_names);
-  } else {
-    std::cout << "only value in ['ocr','structure'] is supported" << std::endl;
-  }
-}
+//int main(int argc, char **argv) {
+//  // Parsing command-line
+//  google::ParseCommandLineFlags(&argc, &argv, true);
+//  check_params();
+//
+//  if (!Utility::PathExists(FLAGS_image_dir)) {
+//    std::cerr << "[ERROR] image path not exist! image_dir: " << FLAGS_image_dir
+//              << std::endl;
+//    exit(1);
+//  }
+//
+//  std::vector<cv::String> cv_all_img_names;
+//  cv::glob(FLAGS_image_dir, cv_all_img_names);
+//  std::cout << "total images num: " << cv_all_img_names.size() << std::endl;
+//
+//  if (!Utility::PathExists(FLAGS_output)) {
+//    Utility::CreateDir(FLAGS_output);
+//  }
+//  if (FLAGS_type == "ocr") {
+//    ocr(cv_all_img_names);
+//  } else if (FLAGS_type == "structure") {
+//    structure(cv_all_img_names);
+//  } else {
+//    std::cout << "only value in ['ocr','structure'] is supported" << std::endl;
+//  }
+//}

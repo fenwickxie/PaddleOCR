@@ -217,4 +217,11 @@ void PPOCR::benchmark_log(int img_num) {
   }
 }
 
+
+PPOCR * CreatePPOCR() {
+    return new PPOCR();
+}
+void DeletePPOCR(PPOCR * obj) {
+    delete obj;
+}
 } // namespace PaddleOCR
