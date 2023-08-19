@@ -19,12 +19,12 @@
 
 namespace PaddleOCR {
 
-extern "C" class  __declspec(dllexport) PPOCR {
+class PPOCR {
 public:
-  //explicit PPOCR();
-  explicit PPOCR(const bool det = true, const std::string& det_model_dir = "./inference/det_infer", const float det_db_thresh = 0.3, const float det_db_box_thresh = 0.6, const float det_db_unclip_ratio = 1.8, const std::string& det_db_score_mode = "fast", const std::string& precision = "fp16",
-      const bool cls = true, const bool use_angle_cls = true, const std::string& cls_model_dir = "./inference/cls_infer", const int cls_batch_num = 1,
-      const bool rec = true, const std::string& rec_model_dir = "./inference/rec_infer", const int rec_batch_num = 6);
+  explicit PPOCR();
+  explicit PPOCR(const bool det, const std::string& det_model_dir, const float det_db_thresh, const float det_db_box_thresh, const float det_db_unclip_ratio, const std::string& det_db_score_mode, const std::string& precision,
+      const bool cls, const bool use_angle_cls, const std::string& cls_model_dir, const int cls_batch_num,
+      const bool rec, const std::string& rec_model_dir, const int rec_batch_num);
   ~PPOCR() = default;
 
   std::vector<std::vector<OCRPredictResult>> ocr(std::vector<cv::Mat> img_list,
@@ -53,6 +53,6 @@ private:
   std::unique_ptr<Classifier> classifier_;
   std::unique_ptr<CRNNRecognizer> recognizer_;
 };
-extern "C" __declspec(dllexport) PPOCR * CreatePPOCR();
-extern "C" __declspec(dllexport) void DeletePPOCR(PPOCR * obj);
+//extern "C" __declspec(dllexport) PPOCR * CreatePPOCR();
+//extern "C" __declspec(dllexport) void DeletePPOCR(PPOCR * obj);
 } // namespace PaddleOCR
