@@ -21,8 +21,8 @@ namespace PaddleOCR {
 			const bool cls, const bool use_angle_cls, const std::string& cls_model_dir, const int cls_batch_num,
 			const bool rec, const std::string& rec_model_dir, const int rec_batch_num);
 		PPPOCRWRAPPER_API void DeletePPOCRInstance(void* instance);
-		PPPOCRWRAPPER_API void OCRImage(void* instance, cv::Mat* img, std::vector<OCRPredictResult>* results);
-		PPPOCRWRAPPER_API void OCRImageBatch(void* instance, std::vector<cv::Mat> *img_list, std::vector<std::vector<OCRPredictResult>>* results);
+		PPPOCRWRAPPER_API void* OCRImage(void* instance, cv::Mat* img);
+		PPPOCRWRAPPER_API void* OCRImageBatch(void* instance, cv::Mat** img_list);
 #ifdef __cplusplus
 	}
 #endif

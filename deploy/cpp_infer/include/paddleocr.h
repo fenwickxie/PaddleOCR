@@ -19,7 +19,7 @@
 
 namespace PaddleOCR {
 
-class PPOCR {
+__declspec(dllimport) class PPOCR {
 public:
   explicit PPOCR();
   explicit PPOCR(const bool det, const std::string& det_model_dir, const float det_db_thresh, const float det_db_box_thresh, const float det_db_unclip_ratio, const std::string& det_db_score_mode, const std::string& precision,

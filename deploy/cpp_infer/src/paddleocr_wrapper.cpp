@@ -22,13 +22,40 @@ namespace PaddleOCR {
 		delete static_cast<PPOCR*>(instance);
 	}
 
-	extern "C" void OCRImage(void* instance, cv::Mat * img, std::vector<OCRPredictResult> *results) {
+	extern "C" void* OCRImage(void* instance, cv::Mat *img) {
 		PPOCR* ppocr = static_cast<PPOCR*>(instance);
-		std::vector<OCRPredictResult> ocrResults = ppocr->ocr(*img);
+
+		// Call ppocr->ocr() and get the result
+		std::vector<OCRPredictResult> result = ppocr->ocr(*img);
+
+		// Convert result to a C-friendly structure
+		std::vector<OCRPredictResult>* result_array = new std::vector<OCRPredictResult>(result);
+
+		// Return the converted structure as void*
+		return static_cast<void*>(result_array);
 	}
-	extern "C" void OCRImageBatch(void* instance, std::vector<cv::Mat> *img_list, std::vector<std::vector<OCRPredictResult>> *results) {
+
+	extern "C" void* OCRImageBatch(void* instance, cv::Mat * *img_list) {
 		PPOCR* ppocr = static_cast<PPOCR*>(instance);
-		std::vector<std::vector<OCRPredictResult>> ocrResults = ppocr->ocr(*img_list);
+
+		// Convert img_list to std::vector<cv::Mat>
+		std::vector<cv::Mat> images;
+		for (int i = 0; img_list[i] != nullptr; ++i) {
+			images.push_back(*(img_list[i]));
+		}
+
+		// Call ppocr->ocr() and get the result
+		std::vector<std::vector<OCRPredictResult>> result = ppocr->ocr(images);
+
+		// Convert result to a C-friendly structure
+		std::vector<OCRPredictResult>* result_array = new std::vector<OCRPredictResult>[result.size()];
+		for (size_t i = 0; i < result.size(); ++i) {
+			result_array[i] = result[i];
+		}
+
+		// Return the converted structure as void*
+		return static_cast<void*>(result_array);
 	}
+
 }
 
